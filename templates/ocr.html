@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OCR演示</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<style>
+    img {
+        width: 360px;
+        height: 480px;
+    }
+</style>
+</head>
+<body>
+    <form action="/" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" id="file">
+        <input type="submit"><br/>
+        {% if raw_img %}
+            <img src="{{url_for('static', filename=raw_img)}}" id="oriImg">
+        {% else %}
+            <img src="" id="oriImg">
+        {% endif %}
+        {% if detect_img %}
+            <img src="{{url_for('static', filename=detect_img)}}" id="detImg">
+        {% endif %}
+    </form>
+    {% for text in predict_texts %}
+        <p>{{ text }}</p>
+    {% endfor %}
+    <script>
+        $("#file").change(function(){
+            if (this.files.length > 0) {
+                var objUrl = window.URL.createObjectURL(this.files[0]);
+                if (objUrl) {
+                    $("#oriImg").attr("src", objUrl);
+                }
+            } else {
+                alert("未选择图片！");
+            }
+        });
+    </script>
+</body>
+</html>
