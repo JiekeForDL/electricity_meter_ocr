@@ -1,4 +1,9 @@
-## 三种启动方式
+# 电表OCR识别项目
+  - 基于YOLO3的文本检测
+  - 基于CRNN+CTC的文本识别
+  
+---
+### 启动方式
 
 1.```python3 main.py```
   - ![main](demo/main.jpg)
